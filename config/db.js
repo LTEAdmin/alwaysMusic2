@@ -22,39 +22,5 @@ const getDate=async()=>{
     }
 }
 getDate();
-export default dbase;
-/* 
 
-
-//ejemplo de insertar datos en tabla,
-const insertarAlumno=async()=>{
-    const consulta='Insert into alumno(nombre,rut,curso,nivel) values ($1,$2,$3,$4)';
-    const values=['Juan','6457141-9','guitarra','0'];
-
-    const resp=await dbase.query(consulta,values);
-    console.log(resp)
-};
-
-//ejemplo para eliminar productos
-const borrarAlumno = async () => {
-    const consulta = 'delete from alumno where rut =';
-    const values = ['6457141-9'];
-    const response = await dbase.query(consulta, values);
-    console.log(response);
-};
-
-//ejemplo para modificar productos
-const modificarAlumno = async ()=>{
-    const consulta='update alumno set nombre=$1, curso=$3, nivel=$4 where rut =$2';
-    const values= ['Maria','6457141-9','piano','1'];
-    const response=await dbase.query(consulta, values);
-    console.log(response);
-}
-
-mostrarAlumnos();// la funcion getDate es la funcion uqe hemos creado que se debe invocar
-buscarAlumno();
-insertarAlumno();
-borrarAlumno();
-modificarAlumno(); */
-
-//export default dbase
+export default dbase
