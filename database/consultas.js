@@ -17,6 +17,8 @@ const buscarAlumno = async (rutAlumno) => {
     try {
         const consulta = "select * from alumno where rut = $1";
         const values = [rutAlumno];
+        //const consulta=`select * from alumno where rut = ${rutAlumno}`;
+        //const resp=await dbase.query(consulta);
         const resp = await dbase.query(consulta, values);
         console.log(resp);
     } catch (error) {
@@ -30,6 +32,10 @@ const insertarAlumno = async (nombreAlumno, rutAlumno, cursoAlumno, nivelAlumno)
     try { 
         const consulta ="Insert into alumno (nombre,rut,curso,nivel) values ($1,$2,$3,$4)";
         const values = [nombreAlumno, rutAlumno, cursoAlumno, nivelAlumno];
+        //si se desea realizar con texto plano estas dos lineas se cambian por la siguiente:
+        //const consulta=`insert into alumno(nombre,rut,curso,nivel) values ('${nombreAlumno}','${rutAlumno}','${cursoAlumno}','${nivelAlumno}')`;
+        //la liena de respuesta tambien se debe modificar y en total de 3 lineas, se conservan solo 2
+        //const resp=await dbase.query(consulta);
         const resp = await dbase.query(consulta, values);
         console.log(resp);
     } catch (error) {
@@ -43,6 +49,8 @@ const borrarAlumno = async (rutAlumno) => {
     try {
         const consulta = "delete from alumno where rut =$1";
         const values = [rutAlumno];
+        //const consulta=`delete from producto where rut = '${rutAlumno}'`;
+        //const resp=await dbase.query(consulta);
         const response = await dbase.query(consulta, values);
         console.log(response);
     }
@@ -54,11 +62,14 @@ borrarAlumno(rutAlumno);
     
 //ejemplo para modificar productos
 const modificarAlumno = async (rutAlumno) => {
-    try { 
-        const consulta = "update alumno set nombre=$1, curso=$3, nivel=$4 where rut =$2";
-        const values = [nombreAlumno, rutAlumno, cursoAlumno, nivelAlumno];
-        const response = await dbase.query(consulta, values);
-        console.log(response);
+    try {
+      const consulta =
+        "update alumno set nombre=$1, curso=$3, nivel=$4 where rut =$2";
+      const values = [nombreAlumno, rutAlumno, cursoAlumno, nivelAlumno];
+      //const consulta=`update alumno set nombre='${nombreAlumno}', curso='${cursoAlumno}', nivel='${nivelAlumno}' where rut = '${rutAlumno}'`;
+      //const resp=await dbase.query(consulta);
+      const response = await dbase.query(consulta, values);
+      console.log(response);
     }
     catch (error) { 
         console.error("Error al conectarse a la base de datos:", error);
