@@ -2,7 +2,6 @@ import pg from 'pg';
 import 'dotenv/config';
 
 const {DB_PASSWORD, DB_USER, DB_HOST, DB_DATABASE, DB_PORT} = process.env;
-
 const config = {
     user: DB_USER,
     host: DB_HOST,
@@ -25,26 +24,8 @@ const getDate=async()=>{
 getDate();
 export default dbase;
 /* 
-const client = await dbase.connect();
-const {rows} = await client.query ('SELECT * from alumno'); // consulta a bbdd
-console.log(rows);
-client.release ();
 
-//mostrar datos de alumno buscado por rut
-const mostrarAlumnos = async () => {
-    const consulta = "select * from alumno";
-  
-  const resp = await dbase.query(consulta);
-  console.log(resp);
-};
 
-//mostrar datos de alumno buscado por rut
-const buscarAlumno = async () => {
-    const consulta = "select * from alumno where rut = $1";
-    const values = ['6457141-9'];
-  const resp = await dbase.query(consulta, values);
-  console.log(resp);
-};
 //ejemplo de insertar datos en tabla,
 const insertarAlumno=async()=>{
     const consulta='Insert into alumno(nombre,rut,curso,nivel) values ($1,$2,$3,$4)';
