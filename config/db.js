@@ -9,11 +9,22 @@ const config = {
     database: DB_DATABASE,
     password: DB_PASSWORD,
     port: DB_PORT,
-    allowExitOnIdle:true,
+    allowExitOnIdle:true, //cierre automatico
 }
+const dbase = new pg.Pool(config);
 
-const dbase = new pg.Pool (config);
-
+const getDate=async()=>{
+    try {
+        const result=await dbase.query('select now()');
+        console.log(result.rows[0].now);    
+         }
+    catch (error) {
+        console.error("Error al conectarse a la base de datos:", error);
+    }
+}
+getDate();
+export default dbase;
+/* 
 const client = await dbase.connect();
 const {rows} = await client.query ('SELECT * from alumno'); // consulta a bbdd
 console.log(rows);
@@ -63,4 +74,6 @@ mostrarAlumnos();// la funcion getDate es la funcion uqe hemos creado que se deb
 buscarAlumno();
 insertarAlumno();
 borrarAlumno();
-modificarAlumno();
+modificarAlumno(); */
+
+//export default dbase
