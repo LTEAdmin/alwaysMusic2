@@ -1,4 +1,6 @@
 import dbase from '../config/db.js';
+const argumentos = process.argv.slice(2);
+const funcion = argumentos[0]
 
 const mostrarAlumnos = async () => {
     try {
@@ -76,4 +78,31 @@ const modificarAlumno = async (rutAlumno) => {
     }    
 }
 modificarAlumno(rutAlumno);
+
+const funciones = {
+    alumnos: mostrarAlumnos,
+    alumno: buscarAlumno,
+    nuevo:insertarAlumno,
+    eliminar:borrarAlumno,
+    cambiar: modificarAlumno
+};
+
+(async () => {
+    await funciones[funcion]({ nombreAlumno, rutAlumno, cursoAlumno, nivelAlumno });
+    pool.end
+})();
+//const modificarAlumno_3 = async (rutAlumno) => {
+//    try {
+//      const consulta ={
+//        text: "update alumno set nombre=$1, curso=$3, nivel=$4 where rut =$2",
+//        values: [nombreAlumno, rutAlumno, cursoAlumno, nivelAlumno]
+//      };  
+//      const response = await dbase.query(consulta, values);
+//      console.log(response);
+//    }
+//    catch (error) { 
+//        console.error("Error al conectarse a la base de datos:", error);
+//    }    
+//}
+
 
